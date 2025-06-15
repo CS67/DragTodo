@@ -2,26 +2,32 @@ function drag() {
   document.querySelectorAll(".list").forEach((list) => {
     let dragging = false;
     let offsetX, offsetY;
+
+    //mousedown -> mouseup\mousemove
     list.addEventListener("mousedown", (e) => {
-      console.log(`${e.pageX} ${offsetX} ${e.pageX - offsetX}`);
+      //prevent from selecting text
       e.preventDefault();
+
       dragging = true;
 
-      // const original = list.parentElement;
-      // original.classList.add("original");
+      //add class "dragging" for convenient css configuration
       list.classList.add("dragging");
 
+      //get initial offset from click position
       offsetX = e.offsetX;
       offsetY = e.offsetY;
+
       list.style.position = "absolute";
       list.style.zIndex = 1000;
       document.body.appendChild(list);
 
-      moveAt(e);
+      // moveAt(e);
 
+      //use callback function
       document.addEventListener("mousemove", mouseMoveHandler);
       document.addEventListener("mouseup", mouseUpHandler);
 
+      //list moving follow the cursor
       function moveAt(e) {
         list.style.left = e.pageX - offsetX + "px";
         list.style.top = e.pageY - offsetY + "px";
@@ -36,16 +42,23 @@ function drag() {
         dragging = false;
         document.removeEventListener("mousemove", mouseMoveHandler);
         document.removeEventListener("mouseup", mouseUpHandler);
-        const x = upEvent.pageX - offsetX;
-        const y = upEvent.pageY - offsetY;
-        const place = document.elementFromPoint(x, y);
-        if (x <= 0 || y <= 0 || !place.classList.contains("box")) {
+        //get cursor position
+        const x = upEvent.pageX;
+        const y = upEvent.pageY;
+
+        //prevent from appending to list
+        let place = document.elementFromPoint(x, y);
+        if (place.classList.contains("list")) {
+          place = place.parentElement;
+        }
+        if (!place.classList.contains("box")) {
           list.remove();
           saveToLocal();
         } else if (place.classList.contains("box")) {
           place.appendChild(list);
           saveToLocal();
         }
+
         list.style.position = "";
         list.style.left = "";
         list.style.top = "";

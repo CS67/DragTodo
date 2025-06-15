@@ -38,6 +38,7 @@ addButtons.forEach((addButton) => {
   });
 });
 
+//save data to local
 function saveToLocal() {
   document.querySelectorAll(".box").forEach((box) => {
     const title = box.querySelector("h3").textContent;
@@ -53,6 +54,7 @@ function saveToLocal() {
   localStorage.setItem("boards", JSON.stringify(boards));
 }
 
+//get data from local
 function getFromLocal() {
   return (
     JSON.parse(localStorage.getItem("boards")) || [
