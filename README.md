@@ -1,2 +1,2 @@
-![演示](https://github.com/user-attachments/assets/f135ed08-2dca-43e9-a39b-02489d609e0b)
-This is my first time learning and creating a JavaScript drag-and-drop project. I got the idea from [jkanban](https://github.com/riktar/jkanban).
+![test](https://github.com/user-attachments/assets/f4c88eb7-4df8-431e-94d2-731bc0f87666)
+Learning drag-and-drop... Got the idea from [jkanban](https://github.com/riktar/jkanban).
