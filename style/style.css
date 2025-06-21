@@ -1,10 +1,10 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
-  background-color: #e9edc9;
+  background-color: #d1e6e9;
 }
 h4 {
   text-align: center;
-  color: #fefae0;
+  color: #ffffff;
 }
 .container {
   /* 100% view height */
@@ -16,31 +16,33 @@ h4 {
 .box {
   height: 400px;
   width: 300px;
-  background-color: #ccd5ae;
+  background-color: #b3d1ce;
   border-radius: 100px;
   padding: 30px;
   margin-right: 40px;
-  position: relative;
+  display: flex;
+  flex-direction: column;
 }
 .box h3 {
   text-align: center;
   margin-top: 0;
   padding-bottom: 20px;
   font-weight: bold;
-  color: #faedcd;
-  border-bottom: 1px solid rgb(60, 59, 59);
+  color: #ffffff;
+  border-bottom: 1px solid #99b3b0;
 }
 .list {
-  background-color: #ccd5ae;
-  width: 300px;
+  background-color: #afccc9;
+  width: 290px;
   height: 50px;
-  font-size: 18px;
-  font-weight: bold;
+  font-size: 16px;
+  padding-right: 5px;
   display: flex;
   margin-bottom: 8px;
+  border-radius: 18px;
+  padding-left: 10px;
   align-items: center;
-  color: #fefae0;
-  border-bottom: 1px dashed #827081;
+  color: #ffffff;
 }
 .list:hover {
   border-radius: 18px;
@@ -50,20 +52,21 @@ h4 {
   transition-property: transform, box-shadow;
   transform: translateY(-3px);
   box-shadow: 1px 1px 5px 3px rgba(0, 0, 0, 0.1);
-  border-left: 3px solid #a3b18a;
-  padding-left: 5px;
+  border-left: 3px solid #99b3b0;
+  padding-left: 10px;
 }
 .dragging {
   border-radius: 12px;
   border: none;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-  border-left: 3px solid #a3b18a;
+  border-left: 3px solid #d1e6e9;
   padding-left: 5px;
   /* prevent hover */
   pointer-events: none;
 }
 .addButton {
-  position: absolute;
+  margin-top: auto;
+  align-self: flex-end;
   bottom: 30px;
   right: 30px;
   height: 50px;
@@ -71,13 +74,18 @@ h4 {
   border-radius: 30px;
   border: none;
   cursor: pointer;
+  background-color: #f1f7f9;
 }
 .addButton:hover {
-  position: absolute;
-  bottom: 30px;
-  right: 30px;
-  height: 50px;
-  width: 50px;
-  border-radius: 30px;
+  transition: ease 0.5s;
+  transform: translateY(-2px);
+  box-shadow: 1px 1px 3px 3px rgba(0, 0, 0, 0.1);
+}
+input {
   border: none;
+  font-size: 16px;
+  border-radius: 10px;
+  height: 30px;
+  width: 278px;
+  outline: none;
 }

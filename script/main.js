@@ -17,7 +17,6 @@ boards.forEach((board) => {
   box.appendChild(addButton);
   container.appendChild(box);
 });
-
 drag();
 
 //add button
@@ -33,8 +32,8 @@ addButtons.forEach((addButton) => {
       //insert before button
       box.insertBefore(list, addButton);
     }
-    drag();
     saveToLocal();
+    drag();
   });
 });
 
@@ -65,4 +64,40 @@ function getFromLocal() {
       { title: "Done", items: ["Get up at 8:00", "Eat fruit"] },
     ]
   );
+}
+
+//edit when dblclick
+function edit() {
+  document.querySelectorAll(".list").forEach((list) => {
+    if (list.dbListener) {
+      return;
+    }
+    list.dbListener = true;
+    list.addEventListener("dblclick", (e) => {
+      e.preventDefault();
+      let content = list.textContent.trim();
+      list.innerHTML = `<input type="text" placeholder="${content}">`;
+      const input = list.querySelector("input");
+      input.focus();
+      function handleLoseFocus() {
+        const newContent = input.value;
+        if (newContent) {
+          list.innerHTML = newContent;
+        } else {
+          list.innerHTML = content;
+        }
+        saveToLocal();
+      }
+
+      function handleKeydown(e) {
+        if (e.key === "Enter") {
+          input.blur();
+        }
+      }
+      //lose focus
+      input.addEventListener("blur", handleLoseFocus);
+      //enter to blur
+      input.addEventListener("keydown", handleKeydown);
+    });
+  });
 }
