@@ -1,11 +1,11 @@
 function drag() {
-  document.querySelectorAll(".list").forEach((list) => {
-    if (list.hasMousedown) {
-      return;
-    }
-    list.hasMousedown = true;
-    list.addEventListener("mousedown", handleMousedown);
-  });
+  const container = document.querySelector(".container");
+
+  if (container.hasMousedown) {
+    return;
+  }
+  container.hasMousedown = true;
+  container.addEventListener("mousedown", handleMousedown);
 
   let dragging = false;
   let offsetX, offsetY;
@@ -75,7 +75,13 @@ function drag() {
   }
 
   function handleMousedown(e) {
-    draggedItem = e.currentTarget;
+    //e.target.classList.contains("list")
+    if (e.target.closest(".list")) {
+      draggedItem = e.target;
+    } else {
+      console.log(e.target);
+      return;
+    }
     e.preventDefault();
     startX = e.pageX;
     startY = e.pageY;

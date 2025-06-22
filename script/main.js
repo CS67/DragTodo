@@ -20,21 +20,19 @@ boards.forEach((board) => {
 drag();
 
 //add button
-const addButtons = document.querySelectorAll(".addButton");
-addButtons.forEach((addButton) => {
-  addButton.addEventListener("click", () => {
+container.addEventListener("click", (e) => {
+  if (e.target.classList.contains("addButton")) {
     const input = prompt("Enter Todo:");
-    const box = addButton.parentElement;
+    const box = e.target.parentElement;
     if (input && input !== "") {
       const list = document.createElement("div");
       list.className = "list";
       list.innerHTML = `${input}`;
       //insert before button
-      box.insertBefore(list, addButton);
+      box.insertBefore(list, e.target);
     }
     saveToLocal();
-    drag();
-  });
+  }
 });
 
 //save data to local
